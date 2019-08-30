@@ -1,5 +1,6 @@
 package ru.kev.ny2016.ny2016_yek;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -116,9 +117,13 @@ public class YEK extends AppCompatActivity {
             case R.id.MusicPlay:
                 MusicClick(item);
                 break;
-                case R.id.SlideShow:
+            case R.id.SlideShow:
                 SlideShow();
                 item.setChecked(!item.isChecked());
+                break;
+            case R.id.About:
+                Intent intent = new Intent(this, About.class);
+                startActivity(intent);
                 break;
         }
 
