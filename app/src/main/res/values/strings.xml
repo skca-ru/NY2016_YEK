@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Хаюшки...</string>
+
+    <string name="Next_Button">></string>
+    <string name="Prev_Button">&lt;</string>
+
+    <string name="HappyNY">С Новым Годом!!!</string>
+    <string name="Next_Button_land"  >Следующий<br/>(Next)</string>
+    <string name="MusicPlay">Играть музыку</string>
+    <string name="MusicStop">Остановить музыку</string>
+    <string name="SlideShow">Слайд-шоу</string>
+
+</resources>

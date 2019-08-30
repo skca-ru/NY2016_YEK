@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/MusicStop"
+        android:id="@+id/MusicPlay" />
+    <item
+        android:id="@+id/SlideShow"
+        android:checkable="true"
+        android:title="@string/SlideShow" />
+</menu>
