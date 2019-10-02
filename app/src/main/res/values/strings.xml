@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hi...</string>
+    <string name="app_name">Hi...(2019 еще)</string>
 
     андроид студио git
     <string name="Next_Button">></string>
@@ -12,6 +12,6 @@
     <string name="MusicStop">Остановить музыку</string>
     <string name="SlideShow">Слайд-шоу</string>
     <string name="About">O...</string>
-    <string name="AboutO">О программе</string>
-
+    <string name="AboutO">О программе:</string>
+    <string name="Version">Версия программы</string>
 </resources>
