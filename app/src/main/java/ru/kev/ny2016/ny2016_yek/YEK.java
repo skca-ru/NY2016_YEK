@@ -114,14 +114,14 @@ public class YEK extends AppCompatActivity {
 
         int id = item.getItemId();
         switch (id){
-            case R.id.MusicPlay:
+            case R.id.Menu_MusicPlay:
                 MusicClick(item);
                 break;
-            case R.id.SlideShow:
+            case R.id.Menu_SlideShow:
                 SlideShow();
                 item.setChecked(!item.isChecked());
                 break;
-            case R.id.About:
+            case R.id.Menu_About:
                 Intent intent = new Intent(this, About.class);
                 startActivity(intent);
                 break;
@@ -209,10 +209,10 @@ public class YEK extends AppCompatActivity {
         //item = (MenuItem) view;
         if (this.mediaPlayer.isPlaying()) {
             this.mediaPlayer.pause();
-            item.setTitle(getString(R.string.MusicPlay));
+            item.setTitle(getString(R.string.Menu_MusicPlay));
         } else {
             this.mediaPlayer.start();
-            item.setTitle(getString(R.string.MusicStop));
+            item.setTitle(getString(R.string.Menu_MusicStop));
         }
         ;
 

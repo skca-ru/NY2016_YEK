@@ -4,14 +4,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="@string/MusicStop"
-        android:id="@+id/MusicPlay" />
+        android:id="@+id/Menu_MusicPlay"
+        android:title="@string/Menu_MusicPlay" />
     <item
-        android:id="@+id/SlideShow"
+        android:id="@+id/Menu_SlideShow"
         android:checkable="true"
-        android:title="@string/SlideShow" />
+        android:title="@string/Menu_SlideShow" />
+    <item    android:id="@+id/custom"
+        android:title="@string/Menu_Custom"/>
     <item
-        android:id="@+id/About"
-        android:title="@string/About" />
+        android:id="@+id/Menu_About"
+        android:title="@string/Menu_About"/>
 
 </menu>
