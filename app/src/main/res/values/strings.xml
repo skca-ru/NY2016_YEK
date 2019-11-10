@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hi...(2019 еще)</string>
+    <string name="app_name">Hi&#8230;(2019 еще)</string>
 
 
     <string name="Next_Button">></string>
@@ -8,13 +8,13 @@
     <string name="HappyNY">С Новым Годом!!!</string>
     <string name="Next_Button_land">Следующий<br />(Next)</string>
     <string name="AboutO">О программе:</string>
-    <string name="Version">Версия программы</string>
+    <string name="Version">Версия</string>
 
 
     <string name="Menu_MusicPlay">Музыка</string>
     <string name="Menu_MusicStop">Остановить музыку</string>
     <string name="Menu_SlideShow">Слайд-шоу</string>
-    <string name="Menu_About">O...</string>
+    <string name="Menu_About">O&#8230;</string>
     <string name="Menu_Custom">Настройки</string>
 
 </resources>
