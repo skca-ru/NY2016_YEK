@@ -1,10 +1,11 @@
 package ru.kev.ny2016.ny2016_yek;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,8 @@ import java.util.TimerTask;
 
 public class YEK extends AppCompatActivity {
 
+    private int aaDuration;
+    SharedPreferences sPref;
     //    protected static String[] Names;
     protected int CurrentImage;
     protected MediaPlayer mediaPlayer;
@@ -85,7 +88,16 @@ public class YEK extends AppCompatActivity {
         //mediaPlayer.setOnPreparedListener(this);
         //mediaPlayer.prepareAsync();
         hSlideShow = new Handler(){public void handleMessage(android.os.Message msg){_NextImage();}};
-         }
+        sPref = android.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        aaDuration = Integer.parseInt(sPref.getString("aaDuration","500"));
+    }
+
+
+        @Override
+    protected void onResume()
+    {   super.onResume();
+        aaDuration =  Integer.parseInt(sPref.getString("aaDuration","500"));
+    }
 
     @Override
     public void onPause(){
@@ -124,6 +136,10 @@ public class YEK extends AppCompatActivity {
             case R.id.Menu_About:
                 Intent intent = new Intent(this, About.class);
                 startActivity(intent);
+                break;
+            case R.id.Menu_Custom:
+                Intent intentCustom = new Intent(this, SettingsActivity.class);
+                startActivity(intentCustom);
                 break;
         }
 
@@ -171,10 +187,10 @@ public class YEK extends AppCompatActivity {
                     //region АнимацияПерехода
                     Animation fadeIn = new AlphaAnimation(0,1);
                     fadeIn.setInterpolator(new DecelerateInterpolator()); // add this
-                    fadeIn.setDuration(500);
+                    fadeIn.setDuration(aaDuration);
                     Animation fadeOut = new AlphaAnimation(0,1);
                     fadeOut.setInterpolator(new DecelerateInterpolator()); // add this
-                    fadeOut.setDuration(500);
+                    fadeOut.setDuration(aaDuration);
                     AnimationSet animation = new AnimationSet(false); // change to false
                     animation.addAnimation(fadeIn);
                     animation.addAnimation(fadeOut);

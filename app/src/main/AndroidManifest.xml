@@ -8,7 +8,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".About"></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".YEK">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.kev.ny2016.ny2016_yek.YEK" />
+        </activity>
+        <activity android:name=".About" />
         <activity
             android:name=".YEK"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -10,7 +10,7 @@
         android:id="@+id/Menu_SlideShow"
         android:checkable="true"
         android:title="@string/Menu_SlideShow" />
-    <item    android:id="@+id/custom"
+    <item    android:id="@+id/Menu_Custom"
         android:title="@string/Menu_Custom"/>
     <item
         android:id="@+id/Menu_About"
