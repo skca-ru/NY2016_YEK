@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -41,7 +42,8 @@ public class YEK extends AppCompatActivity {
     protected Handler hSlideShow;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
 
@@ -63,37 +65,36 @@ public class YEK extends AppCompatActivity {
                 return gestureDetector.onTouchEvent(event);
             }
         });
-//музыка
-        mediaPlayer = MediaPlayer.create(this, R.raw.comin);
-        // mediaPlayer.as
-       //mediaPlayer.start();
-
-        //mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
-
-          //  public void onCompletion(MediaPlayer arg0) {
-           //     arg0.start();//Запускаем воспроизведение заново
-            //}
-
-        //}
-       //);
 
         //ViewSwitcher VS = (ViewSwitcher) findViewById(R.id.fullscreen_content_controls);
         //VS.on
         //MenuItem miMusic = (MenuItem) findViewById(R.id.PlayStop);
         //miMusic.setOnMenuItemClickListener(this.OnMusickClick((View)miMusic));
 
+        hSlideShow = new Handler(){public void handleMessage(android.os.Message msg){_NextImage();}};
+        sPref = android.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        aaDuration = Integer.parseInt(sPref.getString("aaDuration","500"));
+
+        //музыка
         //       mediaPlayer.setDataSource(DATA_STREAM);
         //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         //Log.d(LOG_TAG, "prepareAsync");
         //mediaPlayer.setOnPreparedListener(this);
         //mediaPlayer.prepareAsync();
-        hSlideShow = new Handler(){public void handleMessage(android.os.Message msg){_NextImage();}};
-        sPref = android.preference.PreferenceManager.getDefaultSharedPreferences(this);
-        aaDuration = Integer.parseInt(sPref.getString("aaDuration","500"));
+        mediaPlayer = MediaPlayer.create(this, R.raw.todelete);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer arg0) {
+                arg0.start();//Запускаем воспроизведение заново
+            }});
+        Boolean bStartMusicPlay = sPref.getBoolean("PlayMusic",false);
+        if (bStartMusicPlay) {
+            mediaPlayer.start();
+            //findViewById(R.id.)
+            //item.setTitle(getString(R.string.Menu_MusicStop));
+        };
     }
 
-
-        @Override
+    @Override
     protected void onResume()
     {   super.onResume();
         aaDuration =  Integer.parseInt(sPref.getString("aaDuration","500"));
@@ -116,8 +117,10 @@ public class YEK extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.mainmenu, menu);
-        //menu.add("menu1",);
-
+        if (this.mediaPlayer.isPlaying()) {
+            MenuItem menuMusicPlay = menu.findItem(R.id.Menu_MusicPlay);
+            menuMusicPlay.setTitle(getString(R.string.Menu_MusicStop));
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -157,6 +160,15 @@ public class YEK extends AppCompatActivity {
         int CountImages;
         CountImages = 8;
         try {
+            //region АнимацияПерехода
+            Animation fadeOut = new AlphaAnimation(0,1);
+            fadeOut.setInterpolator(new AccelerateInterpolator()); // add this
+            fadeOut.setDuration(aaDuration);
+           // fadeOut.setStartOffset(aaDuration);
+            AnimationSet animationFO = new AnimationSet(false); // change to false
+            animationFO.addAnimation(fadeOut);
+            //IV.startAnimation(animationFO);
+
             if (Forward!=true) {CurrentImage = CurrentImage -2; if (CurrentImage<=0) {CurrentImage = CountImages-1;};};
             switch (CurrentImage) {
                 case 1:
@@ -184,18 +196,24 @@ public class YEK extends AppCompatActivity {
                     IV.setImageResource(R.drawable.venik);
                     CurrentImage = 0;}
 
-                    //region АнимацияПерехода
+
+
+
                     Animation fadeIn = new AlphaAnimation(0,1);
                     fadeIn.setInterpolator(new DecelerateInterpolator()); // add this
                     fadeIn.setDuration(aaDuration);
-                    Animation fadeOut = new AlphaAnimation(0,1);
-                    fadeOut.setInterpolator(new DecelerateInterpolator()); // add this
-                    fadeOut.setDuration(aaDuration);
+//
+////                    Animation fadeOut = new AlphaAnimation(1,0);
+////                    fadeOut.setInterpolator(new AccelerateInterpolator()); // add this
+////                    fadeOut.setDuration(aaDuration);
+//                    //fadeOut.setStartOffset(aaDuration);
+//
                     AnimationSet animation = new AnimationSet(false); // change to false
                     animation.addAnimation(fadeIn);
-                    animation.addAnimation(fadeOut);
+                    //animation.addAnimation(fadeOut);
                     animation.setRepeatCount(1);
-                    IV.setAnimation(animation);
+                    //IV.setAnimation();
+                    IV.startAnimation(animation);
                     //endregion
 
                     CurrentImage++;
@@ -220,7 +238,7 @@ public class YEK extends AppCompatActivity {
 
     }}
 
-    public void MusicClick(MenuItem item) {
+   public void MusicClick(MenuItem item) {
         //MenuItem item;
         //item = (MenuItem) view;
         if (this.mediaPlayer.isPlaying()) {
@@ -233,6 +251,7 @@ public class YEK extends AppCompatActivity {
         ;
 
     }
+
     private GestureDetector initGestureDetector() {
         return new GestureDetector(this.getBaseContext(),new GestureDetector.SimpleOnGestureListener() {
 

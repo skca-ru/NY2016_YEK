@@ -19,13 +19,13 @@
     <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
-    <string name="messages_images">Изображения</string>
-    <string name="messages_header">Messages</string>
+    <string name="prefcat_images">Изображения</string>
+    <string name="prefcat_create">При запуске</string>
     <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
     <string name="duration_title">Длительность перехода</string>
-    <string name="signature_title">Your signature</string>
+    <string name="playmusic_title">Запускать проигрыватель</string>
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->

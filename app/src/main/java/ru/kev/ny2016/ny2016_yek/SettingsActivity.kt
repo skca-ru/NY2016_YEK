@@ -38,6 +38,7 @@ class SettingsActivity : AppCompatActivity() {
                 .replace(R.id.settings, SettingsFragment())
                 .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        this.title = getString(R.string.Menu_Custom);
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -45,7 +46,8 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
             val editDuration = preferenceManager.findPreference<EditTextPreference>("aaDuration");
-            editDuration?.setOnBindEditTextListener { editText -> editText.inputType =  InputType.TYPE_CLASS_NUMBER; editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(4));};
+            editDuration?.setOnBindEditTextListener { editText -> editText.inputType =  InputType.TYPE_CLASS_NUMBER;
+                editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(4));};
             //val et  =  editDuration?.getEditText(); //.getText();
             //et.filters = arrayOf<InputFilter>(InputFilterMinMax(0,9999));//arrayOf<InputFilter>(InputFilterMinMax(0, 9999)));
 

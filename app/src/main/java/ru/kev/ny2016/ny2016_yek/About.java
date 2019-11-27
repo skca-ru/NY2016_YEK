@@ -17,5 +17,12 @@ public class About extends AppCompatActivity {
         tvVersion = (TextView) findViewById(R.id.idVersion);
         tvVersion.setText(versionName);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

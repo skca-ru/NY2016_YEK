@@ -17,7 +17,14 @@
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/messages_images">
+    <PreferenceCategory app:title="@string/prefcat_create">
+        <CheckBoxPreference
+            app:key="PlayMusic"
+            app:title="@string/playmusic_title"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/prefcat_images">
         <EditTextPreference
             app:key="aaDuration"
             app:title="@string/duration_title"

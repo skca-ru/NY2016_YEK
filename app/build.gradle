@@ -11,8 +11,8 @@ android {
         applicationId "ru.kev.ny2016.ny2016_yek"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 20191110
-        versionName "1.19.11.10"
+        versionCode 20191115
+        versionName "1.19.11.15"
         //signingConfig signingConfigs.config
     }
     buildTypes {
