@@ -1,5 +1,6 @@
 package ru.kev.ny2016.ny2016_yek;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -40,7 +41,7 @@ public class YEK extends AppCompatActivity {
     protected boolean SlideShowMode ;
     protected Timer timer;
     protected Handler hSlideShow;
-
+    protected ComponentName PlayMusic;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -81,16 +82,15 @@ public class YEK extends AppCompatActivity {
         //Log.d(LOG_TAG, "prepareAsync");
         //mediaPlayer.setOnPreparedListener(this);
         //mediaPlayer.prepareAsync();
-        mediaPlayer = MediaPlayer.create(this, R.raw.todelete);
+        mediaPlayer = MediaPlayer.create(this, R.raw.comin);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer arg0) {
                 arg0.start();//Запускаем воспроизведение заново
             }});
+
         Boolean bStartMusicPlay = sPref.getBoolean("PlayMusic",false);
         if (bStartMusicPlay) {
             mediaPlayer.start();
-            //findViewById(R.id.)
-            //item.setTitle(getString(R.string.Menu_MusicStop));
         };
     }
 
@@ -110,6 +110,7 @@ public class YEK extends AppCompatActivity {
     public void onDestroy() {
 
         mediaPlayer.release();
+        stopService(new Intent(this, MusicService.class));
         super.onDestroy();
     }
 
@@ -241,16 +242,17 @@ public class YEK extends AppCompatActivity {
    public void MusicClick(MenuItem item) {
         //MenuItem item;
         //item = (MenuItem) view;
-        if (this.mediaPlayer.isPlaying()) {
-            this.mediaPlayer.pause();
-            item.setTitle(getString(R.string.Menu_MusicPlay));
-        } else {
-            this.mediaPlayer.start();
-            item.setTitle(getString(R.string.Menu_MusicStop));
-        }
-        ;
-
-    }
+//        if (this.mediaPlayer.isPlaying()) {
+//            this.mediaPlayer.pause();
+//            item.setTitle(getString(R.string.Menu_MusicPlay));
+//        } else {
+//            this.mediaPlayer.start();
+//            item.setTitle(getString(R.string.Menu_MusicStop));
+//        }
+//        ;
+        PlayMusic = startService(new Intent(this, MusicService.class));
+        //stopService(new Intent(this, MusicService.class));
+   }
 
     private GestureDetector initGestureDetector() {
         return new GestureDetector(this.getBaseContext(),new GestureDetector.SimpleOnGestureListener() {
