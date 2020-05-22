@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NY2016_YEK.iml" filepath="$PROJECT_DIR$/NY2016_YEK.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NY2016_YEK_ubuntu.iml" filepath="$PROJECT_DIR$/NY2016_YEK_ubuntu.iml" group="NY2016_YEK_ubuntu" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="NY2016_YEK_ubuntu/app" />
     </modules>
   </component>
 </project>
