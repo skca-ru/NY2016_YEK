@@ -35,7 +35,7 @@ public class YEK extends AppCompatActivity {
     SharedPreferences sPref;
     //    protected static String[] Names;
     protected int CurrentImage;
-    protected MediaPlayer mediaPlayer;
+    //protected MediaPlayer mediaPlayer;
     protected ImageView IV;
     private GestureDetector gestureDetector;
     protected boolean SlideShowMode ;
@@ -82,15 +82,17 @@ public class YEK extends AppCompatActivity {
         //Log.d(LOG_TAG, "prepareAsync");
         //mediaPlayer.setOnPreparedListener(this);
         //mediaPlayer.prepareAsync();
-        mediaPlayer = MediaPlayer.create(this, R.raw.comin);
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            public void onCompletion(MediaPlayer arg0) {
-                arg0.start();//Запускаем воспроизведение заново
-            }});
+        //mediaPlayer = MediaPlayer.create(this, R.raw.comin);
+        //mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        //    public void onCompletion(MediaPlayer arg0) {
+        //        arg0.start();//Запускаем воспроизведение заново
+        //    }});
 
         Boolean bStartMusicPlay = sPref.getBoolean("PlayMusic",false);
+        //boolean bStartMusicPlay = true;
         if (bStartMusicPlay) {
-            mediaPlayer.start();
+            //mediaPlayer.start();
+            PlayMusic = startService(new Intent(this, MusicService.class));
         };
     }
 
@@ -102,14 +104,15 @@ public class YEK extends AppCompatActivity {
 
     @Override
     public void onPause(){
-        mediaPlayer.pause();
+        if (PlayMusic!= null) {
+            /*PlayMusic.Pause();*/};
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
 
-        mediaPlayer.release();
+     //   mediaPlayer.release();
         stopService(new Intent(this, MusicService.class));
         super.onDestroy();
     }
@@ -118,10 +121,10 @@ public class YEK extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.mainmenu, menu);
-        if (this.mediaPlayer.isPlaying()) {
-            MenuItem menuMusicPlay = menu.findItem(R.id.Menu_MusicPlay);
-            menuMusicPlay.setTitle(getString(R.string.Menu_MusicStop));
-        }
+//        if (this.mediaPlayer.isPlaying()) {
+//            MenuItem menuMusicPlay = menu.findItem(R.id.Menu_MusicPlay);
+//            menuMusicPlay.setTitle(getString(R.string.Menu_MusicStop));
+//        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -250,8 +253,11 @@ public class YEK extends AppCompatActivity {
 //            item.setTitle(getString(R.string.Menu_MusicStop));
 //        }
 //        ;
-        PlayMusic = startService(new Intent(this, MusicService.class));
-        //stopService(new Intent(this, MusicService.class));
+       if (PlayMusic == null) {
+           PlayMusic = startService(new Intent(this, MusicService.class));}
+       else {
+           stopService(new Intent(this, MusicService.class)); PlayMusic = null;}
+       ;
    }
 
     private GestureDetector initGestureDetector() {

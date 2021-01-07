@@ -12,7 +12,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 20191115
-        versionName "1.20.05.22"
+        versionName "1.21.01.07"
         //signingConfig signingConfigs.config
     }
     buildTypes {

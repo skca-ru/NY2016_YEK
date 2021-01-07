@@ -6,13 +6,11 @@ import android.media.MediaPlayer
 import android.os.IBinder
 import android.widget.Toast
 
-
-
-
-
 class MusicService : Service() {
 
     private var mPlayer: MediaPlayer? = null
+
+    //public fun Pause() {mPlayer!!.pause();}
 
     override fun onBind(intent: Intent): IBinder? {
         return null;
